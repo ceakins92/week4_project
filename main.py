@@ -133,7 +133,7 @@ class Blackjack():
         self.player_total = player_hand
         # -- CHECK WINNER
         if player_hand == 21:
-            self.blackjack()
+            self.winner()
         if player_hand > 21:
             self.bust()
         if player_hand < 21:
@@ -297,6 +297,7 @@ class Blackjack():
         if action == 'bet':
             self.place_a_bet()
         if action == 'new':
+            self.cash = 50
             self.current_bet = 0
             self.game_driver()
         if action == 'quit':
