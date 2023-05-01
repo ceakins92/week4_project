@@ -15,13 +15,14 @@ class Blackjack():
     player_cards = []
     dealer_total = 0
     dealer_cards = []
-    deck = list(itertools.product(range(1, 14), ['♦', '♠', '♣', '♥']))
+    deck = []
 
     # -------SHUFFLE METHOD
     def shuffle_deck(self):
 
         print(f'~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
         # -- SHUFFLE PROCESS
+        self.deck = list(itertools.product(range(1, 14), ['♦', '♠', '♣', '♥']))
         random.shuffle(self.deck)
         # -- PLAYER INVOLVEMENT
         print('\nThe dealer shuffles the deck....')
