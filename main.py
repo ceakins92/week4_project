@@ -61,16 +61,16 @@ class Blackjack():
         random.shuffle(self.deck)
         for i in range(1):
             print(self.deck[i][1], self.deck[i][0])
-            del self.deck[i]
             self.dealer_cards.append((self.deck[i][1], self.deck[i][0]))
+            del self.deck[i]
             self.dealer_total = self.dealer_cards[0][1]
         # -- DEAL TO PLAYER
         print('\nYou received two cards:')
         random.shuffle(self.deck)
         for i in range(2):
             print(self.deck[i][1], self.deck[i][0])
-            del self.deck[i]
             self.player_cards.append((self.deck[i][1], self.deck[i][0]))
+            del self.deck[i]
         player_hand = self.player_cards[0][1] + self.player_cards[1][1]
         self.player_total = player_hand
         if player_hand == 21:
@@ -87,9 +87,9 @@ class Blackjack():
         random.shuffle(self.deck)
         for i in range(1):
             print(self.deck[i][1], self.deck[i][0])
-            del self.deck[i]
             # -- UPDATE DEALER CARDS
             self.dealer_cards.append((self.deck[i][1], self.deck[i][0]))
+            del self.deck[i]
         # -- UPDATE DEALER TOTAL
         dealer_hand = self.dealer_cards[0][1] + self.dealer_cards[1][1]
         self.dealer_total = dealer_hand
