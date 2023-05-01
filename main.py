@@ -43,9 +43,9 @@ class Blackjack():
             # -- INVALID RESPONSE
             else:
                 print('Please enter "Yes" or "No"')
-        pass
 
     # -------DEAL CARDS METHOD
+
     def deal(self):
 
         # -- CLEAR ANY PREVIOUS CARDS
