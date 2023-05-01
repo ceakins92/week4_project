@@ -129,13 +129,14 @@ class Blackjack():
         print('\nYou received another card:')
         random.shuffle(self.deck)
         for i in range(1):
-            print(self.deck[i][1], self.deck[i][0] if i not in self.player_cards else self.hit())
+            print(self.deck[i][1], self.deck[i][0]
+                  if i not in self.player_cards and i not in self.dealer_cards else self.hit())
             # -- UPDATE HAND
             self.player_cards.append((self.deck[i][1], self.deck[i][0]))
             del self.deck[i]
         # -- UPDATE PLAYER TOTAL
-        player_hand=self.player_total + self.player_cards[-1][1]
-        self.player_total=player_hand
+        player_hand = self.player_total + self.player_cards[-1][1]
+        self.player_total = player_hand
         # -- CHECK WINNER
         if player_hand == 21:
             self.winner()
@@ -153,7 +154,7 @@ class Blackjack():
         print(f'         Congratulations {self.player_name.title()}!')
         print('           You beat the dealer')
         # -- CHECK FOR BET / CONTINUE GAME
-        self.victor=True
+        self.victor = True
         if self.current_bet:
             self.money_handler()
         else:
@@ -168,7 +169,7 @@ class Blackjack():
             f'      Player: {self.player_total}  |  Dealer: {self.dealer_total}')
         print('          You lost this hand')
         # -- UPDATE WALLET/BET
-        self.victor=False
+        self.victor = False
         if self.current_bet:
             self.money_handler()
         else:
@@ -182,7 +183,7 @@ class Blackjack():
         print(f'  Player: {self.player_total}  |  Dealer: {self.dealer_total}')
         print('             You lost this hand')
         # -- UPDATE WALLET/BET
-        self.victor=False
+        self.victor = False
         if self.current_bet:
             self.money_handler()
         else:
@@ -196,7 +197,7 @@ class Blackjack():
         print(f'  Player: {self.player_total}  |  Dealer: {self.dealer_total}')
         print('            You beat the dealer')
         # -- UPDATE WALLET/BET
-        self.victor=True
+        self.victor = True
         if self.current_bet:
             self.money_handler()
         else:
@@ -206,13 +207,13 @@ class Blackjack():
     def money_handler(self):
         # -- WINNER ACTION
         if self.victor == True:
-            self.cash=self.cash + (self.current_bet * 2)
+            self.cash = self.cash + (self.current_bet * 2)
             print(f'\nYou won ${self.current_bet}!')
         # -- LOSER ACTION
         if self.victor == False:
             print(f'You lost ${self.current_bet}.')
         # -- CONTINE TO GAME
-        ready=input('Press enter to continue:\n')
+        ready = input('Press enter to continue:\n')
         if ready:
             self.play_again()
         else:
@@ -232,9 +233,9 @@ class Blackjack():
         # Ask if the player wants to bet or go to the main menu
         print(f'            What would you like to do now?            ')
         # -- TAKE USER MENU INPUT
-        deciding=True
+        deciding = True
         while deciding:
-            action=input(
+            action = input(
                 f'         PLAY  |  BET  |  NEW PLAYER  |  QUIT\n').lower()
             if action == 'play' or 'play again':
                 self.shuffle_deck()
@@ -260,12 +261,12 @@ class Blackjack():
         if self.cash < 50:
             print(f'              Your wallet is down to ${self.cash}\n')
         # -- PLACE BET, UPDATE CASH, UPDATE CURRENT BET
-        getting_cash=True
+        getting_cash = True
         while getting_cash == True:
-            bet_amount=int(input(f'How much would you like to bet?\n'))
+            bet_amount = int(input(f'How much would you like to bet?\n'))
             if bet_amount <= self.cash and bet_amount >= 1:
-                self.cash=self.cash - bet_amount
-                self.current_bet=bet_amount
+                self.cash = self.cash - bet_amount
+                self.current_bet = bet_amount
                 print(
                     f'          You have bet ${self.current_bet} and now')
                 print(f'        have ${self.cash} in your wallet.')
@@ -294,16 +295,16 @@ class Blackjack():
         # -- PLAY AGAIN MENU
         print(f'          What would you like to do now?            ')
         # -- TAKE USER INPUT MENU
-        action=input(
+        action = input(
             f'         PLAY   |  BET  |  NEW PLAYER  |  QUIT\n').lower()
         if action == 'play':
-            self.current_bet=0
+            self.current_bet = 0
             self.shuffle_deck()
         if action == 'bet':
             self.place_a_bet()
         if action == 'new':
-            self.cash=50
-            self.current_bet=0
+            self.cash = 50
+            self.current_bet = 0
             self.game_driver()
         if action == 'quit':
             exit()
@@ -321,7 +322,7 @@ class Blackjack():
         print(f'                We have a new player!                 ')
         # -- GET/VERIFY PLAYER NAME
         while True:
-            self.player_name=input(
+            self.player_name = input(
                 f'What is your name?\n').lower()
             if self.player_name.isalpha():
                 break
@@ -332,18 +333,18 @@ class Blackjack():
         print(f'                You currently have ${self.cash}\n')
         print(f'            What would you like to do now?            ')
         # -- TAKE USER MENU INPUT
-        deciding=True
+        deciding = True
         while deciding:
-            action=input(
+            action = input(
                 f'        PLAY  |  BET  |  VIEW WALLET  |  QUIT\n').lower()
             if action == 'play':
-                deciding=False
+                deciding = False
                 self.shuffle_deck()
             if action == 'bet':
-                deciding=False
+                deciding = False
                 self.place_a_bet()
             if action == 'view wallet' or 'view' or 'wallet':
-                deciding=False
+                deciding = False
                 self.wallet()
             if action == 'quit' or 'q':
                 exit()
